@@ -1,4 +1,4 @@
-var LoginService = function ($http) {
+var GithubService = function ($http) {
 
 	this.checkLogin = function (usermodel) {
 		console.log('Username : ' + usermodel.Username + ' Password : ' + usermodel.Password);
@@ -7,6 +7,7 @@ var LoginService = function ($http) {
 	this.getGithubData = function (id, callBacks) {
 		
 		// Study more on JavaScript promise
+		callBacks.begin();
 		var promise = $http.get('https://api.github.com/users/' + id);
 		
 		promise.then(function(response){
@@ -15,10 +16,13 @@ var LoginService = function ($http) {
 		.then(function(response){
 			callBacks.success(response.data);
 		})
+		.finally(function(){
+			callBacks.end();
+		})
 		.catch(function(reason) {
             callBacks.error();
         });;
 	};
 };
 
-myApp.service('LoginService', ['$http', LoginService]);
+myApp.service('GithubService', ['$http', GithubService]);
