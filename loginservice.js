@@ -16,7 +16,7 @@ var LoginService = function ($http) {
 			callBacks.success(response.data);
 		})
 		.catch(function(reason) {
-            console.log('Handle rejected promise ('+reason+') here.');
+            callBacks.error();
         });;
 	};
 };
