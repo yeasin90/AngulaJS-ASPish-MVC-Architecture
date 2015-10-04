@@ -20,25 +20,25 @@
 			<input type="text" ng-model="LoginModel.GithubUsername" />
 			<input type="submit" value="Login" />
 		</form>
+		{{error}}
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Stars</th>
+					<th>Language</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="repo in repos">
+					<td>{{repo.name}}</td>
+					<td>{{repo.stargazers_count | number}}</td>
+					<!-- number is called filter in ng. There are many filters in ng -->
+					<td>{{repo.language}}</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
-
-	<table>
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Stars</th>
-				<th>Language</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="repo in repos">
-				<td>{{repo.name}}</td>
-				<td>{{repo.stargazers_count | number}}</td>
-				<!-- number is called filter in ng. There are many filters in ng -->
-				<td>{{repo.language}}</td>
-			</tr>
-		</tbody>
-	</table>
 </body>
 
 </html>
@@ -47,7 +47,7 @@
 	(function(){
 		
 		var HomeCtrl = function($scope, LoginService, LoginModel){
-			$scope.test = "HH";
+			
 			$scope.LoginModel =  new LoginModel(); // Initially pass empty model to View
 			
 			var loginViewmodel = new LoginModel({Username: 'Yeasin', Passowrd: '1234'});
@@ -61,7 +61,7 @@
 						console.log($scope.repos);
 					},
 					error: function(){
-						console.log("Failed to get data");
+						$scope.test = "Failed to get data";
 					}
 				};
 					
