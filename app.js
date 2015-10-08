@@ -1,22 +1,40 @@
-var myApp = angular.module('home', ["ngRoute","ngSanitize"]);
+var myApp = angular.module('home', ["ngRoute", "ngSanitize"]);
 
-myApp.config(function($routeProvider){
+myApp.config(function ($routeProvider) {
 	$routeProvider
-		.when("/main",{
+		.when("/main", {
 			templateUrl: "View/main.html",
 			controller: "MainController"
 		})
-		.when("/user/:username",{
+		.when("/user/:username", {
+			tempData: 'bad',
 			templateUrl: "View/user.html",
 			controller: "UserController"
 		})
-		.when("/newEvent",{
-			templateUrl: "View/NewEvent.html",
+		.when("/newEvent", {
+			templateUrl: "View/newEvent.html",
 			controller: "EventController"
 		})
-		.when("/eventDetails",{
+		.when("/events", {
 			templateUrl: "View/eventDetails.html",
 			controller: "EventController"
 		})
-		.otherwise({redirectTo: "/main"});	
+		.otherwise({
+			redirectTo: "/"
+		});
+});
+
+myApp.filter('customFilterDuration', function () {
+	// modify input
+	// return modifiedInput
+	return function (input /*, filter parameters */) {
+		switch (input) {
+			case 1:
+				return "Half Hour";
+			case 2:
+				return "1 hour";
+			case 3:
+				return "Half day";
+		}
+	}
 });
