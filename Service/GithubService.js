@@ -1,4 +1,4 @@
-var GithubService = function ($http) {
+var GithubService = function ($http, $q) {
 
 	this.checkLogin = function (usermodel) {
 		console.log('Username : ' + usermodel.Username + ' Password : ' + usermodel.Password);
@@ -25,4 +25,4 @@ var GithubService = function ($http) {
 	};
 };
 
-myApp.service('GithubService', ['$http', GithubService]);
+myApp.service('GithubService', ['$http', '$q', GithubService]);

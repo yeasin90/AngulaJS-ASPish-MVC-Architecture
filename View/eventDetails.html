@@ -1,0 +1,82 @@
+<!-- Angular directives -->
+<!-- Directives : it's a way to teach HTML some new functionality. --> 
+<!-- 3 ways to specify directive = by tag, by attribute and by class-->
+<!-- 1. <ng-form></ng-form> -->
+<!-- 2. <div ng-form></div> -->
+<!-- 3. <div class="ng-form"></div> -->
+<!-- html form does not allow nested form. ng-form allows it -->
+<!-- We can make custom directive as well -->
+<input type="text" ng-model="testInput" /> {{testInput}}
+<h4>{{event.name}}</h4>
+<h4 ng-bind="event.name"></h4>
+<h4 ng-bind-template="{{event.name}} {{event.date}}"></h4>
+<h4 ng-bind-html="snippet">Some title</h4>
+<h4 ng-bind-html-unsafe="snippet">Some title</h4>
+<h4 ng-hide="boolValue1">Hide this</h4>
+<h4 ng-hide="!boolValue2">Dont Hide this</h4>
+<h4 ng-show="boolValue3">Show this</h4>
+<h4 ng-show="!boolValue4">Dont Show this</h4>
+<button class="btn" ng-disabled="buttonDisabled1">Click</button>
+<button class="btn" ng-disabled="buttonDisabled2">Click</button>
+<button class="btn" ng-disabled="!buttonDisabled3">Click</button>
+
+<!-- Angular Expression -->
+<div ng-non-bindable>{{1+2}}</div> <!-- Show with curly braces -->
+<div>{{ [11,20,35][2] }}</div> <!-- Angular expression. Here, we are accessing last element of an array -->
+
+<!-- Angular Filters -->
+<!-- Modify output : format, sorting, uppercase, lowercase etc -->
+<!-- We use Angular filters on angular expression. ex : {{expression1 | filter1}} -->
+<!-- We can make custom filters as well-->
+<h4>{{event.name | uppercase}} {{event.name | lowercase}}</h4>
+<h4>{{3.14151665757 | number: 2}}</h4>
+<h4>{{3 | number: 2}}</h4>
+<h4>{{45 | currency}}</h4>
+<h4>{{event.date | date:'medium'}}</h4>
+<h4>{{event.date | date:'mediumDate'}}</h4>
+<hr />
+
+<h3>Sessions</h3>
+Order By : 
+<select ng-model="sortorder" class="input-small">
+	<option selected value="name">Name</option>
+	<option value="upVoteCount">Vote</option>
+</select>
+<br />
+
+Filter By:
+<select ng-model="query.level" class="input-medium">
+	<option selected value="">All</option>
+	<option value="Introductory">Introductory</option>
+	<option value="Intermediate">Intermediate</option>
+	<option value="Advanced">Advanced</option>
+</select>
+<ul class="thumbnails">
+	<li ng-repeat="session in event.sessions | orderBy:sortorder | limitTo:2 | filter:query">
+
+		<div class="row session">
+
+			<div class="span0 well votingWidget">
+				<div class="votingButton" ng-click="upVoteSession(session)">
+					<i class="icon-chevron-up icon-white"></i>
+				</div>
+				<div class="badge badge-inverse">
+					<div>{{session.upVoteCount}}</div>
+				</div>
+				<div class="votingButton">
+					<i class="icon-chevron-down" ng-click="downVoteSession(session)"></i>
+				</div>
+			</div>
+
+			<div class="well span9">
+				<h4 class="well title">{{session.name}}</h4>
+				<h6 style="margin-top:-10px">{{session.creatorName}}</h6>
+				<span>Duration: {{session.duration}}</span>
+				<br />
+				<span>Level: {{session.level}}</span>
+
+				<p>{{session.abstract}}</p>
+			</div>
+		</div>
+	</li>
+</ul>
