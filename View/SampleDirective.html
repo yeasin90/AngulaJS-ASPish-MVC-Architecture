@@ -1,0 +1,10 @@
+<div>
+	<label>Parent Scope : </label> {{name}}
+	<br />
+	<label>Parent Scope Input : </label> <input type="text" ng-model="name" />
+	<br />
+	<button type="button" ng-click="getScopeValue()">Get Parent Scope</button>
+	<br />
+	<br />
+	<my-directive1 name="{{name}}" action="getScopeValue()"></my-directive1>
+</div>

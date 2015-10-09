@@ -19,22 +19,14 @@ myApp.config(function ($routeProvider) {
 			templateUrl: "View/eventDetails.html",
 			controller: "EventController"
 		})
+		.when("/sampleDirective", {
+			templateUrl: "View/SampleDirective.html",
+			controller: "SampleDirectiveController"
+		})
 		.otherwise({
 			redirectTo: "/"
 		});
 });
 
-myApp.filter('customFilterDuration', function () {
-	// modify input
-	// return modifiedInput
-	return function (input /*, filter parameters */) {
-		switch (input) {
-			case 1:
-				return "Half Hour";
-			case 2:
-				return "1 hour";
-			case 3:
-				return "Half day";
-		}
-	}
-});
+
+
