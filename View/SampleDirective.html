@@ -1,10 +1,31 @@
 <div>
-	<label>Parent Scope : </label> {{name}}
+	<h4>Custom attributes</h4>
+	<hr />
+	<label>Custom Directive will not allow characters in textbox : </label> <input type="text" date-keys />
 	<br />
-	<label>Parent Scope Input : </label> <input type="text" ng-model="name" />
+	<fun-directive></fun-directive>
+	<br />
+	<br />
+	<greeting finnish bengali />
+	<br />
+	<br />
+	<greeting ng-transclude><div finnish bengali>Nested Directive</div></greeting>
+	<br />
+	<br />
+	<button type="button" call-jquery class="btn">Call JQeury function with custom Directive</button>
+	<br />
+	<br />
+	<h4>Parent Scope attributes</h4>
+	<hr />
+	<label>Name : </label> {{name}} <input type="text" ng-model="name" />
+	<br />
+	<label>Roll : </label> {{roll}} <input type="text" ng-model="roll" />
+	<br />
+	<label>Country : </label> {{country}} <input type="text" ng-model="country" />
 	<br />
 	<button type="button" ng-click="getScopeValue()">Get Parent Scope</button>
 	<br />
 	<br />
-	<my-directive1 name="{{name}}" action="getScopeValue()"></my-directive1>
+	<!--<my-directive1 name="{{name}}" action="getScopeValue()"></my-directive1> -->
+	<my-directive1 name="{{name}}" roll="roll" country="country" action="getScopeValue()"></my-directive1>
 </div>
